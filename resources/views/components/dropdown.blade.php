@@ -36,8 +36,8 @@ switch ($width) {
             class="absolute z-50 mt-2 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }}"
             style="display: none;"
             @click="open = false">
-        <div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
+        <ul class="py-1 {{ $contentClasses }}">
             {{ $content }}
-        </div>
+        </ul>
     </div>
 </div>
