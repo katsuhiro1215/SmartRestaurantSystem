@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreReportRequest;
-use App\Http\Requests\UpdateReportRequest;
+use App\Http\Requests\Store\StoreReportRequest;
+use App\Http\Requests\Update\UpdateReportRequest;
 use App\Models\Report;
 
 class ReportController extends Controller

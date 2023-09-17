@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUserProfileRequest;
-use App\Http\Requests\UpdateUserProfileRequest;
+use App\Http\Requests\Store\StoreUserProfileRequest;
+use App\Http\Requests\Update\UpdateUserProfileRequest;
 use App\Models\UserProfile;
 
 class UserProfileController extends Controller

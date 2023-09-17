@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTableRequest;
-use App\Http\Requests\UpdateTableRequest;
+use App\Http\Requests\Store\StoreTableRequest;
+use App\Http\Requests\Update\UpdateTableRequest;
 use App\Models\Table;
 
 class TableController extends Controller

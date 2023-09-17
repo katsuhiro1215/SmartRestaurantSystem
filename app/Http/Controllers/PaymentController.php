@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePaymentRequest;
-use App\Http\Requests\UpdatePaymentRequest;
+use App\Http\Requests\Store\StorePaymentRequest;
+use App\Http\Requests\Update\UpdatePaymentRequest;
 use App\Models\Payment;
 
 class PaymentController extends Controller
