@@ -5,14 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminProfileController;
 
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return view('admin.dashboard');
+})->middleware(['auth:admins', 'verified'])->name('admin.dashboard');
 
 Route::middleware('auth:admins')->group(function () {
     Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');

@@ -5,14 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Employee\EmployeeProfileController;
 
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return view('employee.dashboard');
+})->middleware(['auth:employees', 'verified'])->name('employee.dashboard');
 
 Route::middleware('auth:employees')->group(function () {
     Route::get('/profile', [EmployeeProfileController::class, 'edit'])->name('profile.edit');
