@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreOrderMenuRequest;
-use App\Http\Requests\UpdateOrderMenuRequest;
+use App\Http\Requests\Store\StoreOrderMenuRequest;
+use App\Http\Requests\Update\UpdateOrderMenuRequest;
 use App\Models\OrderMenu;
 
 class OrderMenuController extends Controller

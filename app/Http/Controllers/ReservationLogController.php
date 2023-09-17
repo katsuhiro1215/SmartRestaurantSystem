@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreReservationLogRequest;
-use App\Http\Requests\UpdateReservationLogRequest;
+use App\Http\Requests\Store\StoreReservationLogRequest;
+use App\Http\Requests\Update\UpdateReservationLogRequest;
 use App\Models\ReservationLog;
 
 class ReservationLogController extends Controller

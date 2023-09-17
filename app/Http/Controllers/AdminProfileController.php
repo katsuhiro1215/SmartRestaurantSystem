@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreAdminProfileRequest;
-use App\Http\Requests\UpdateAdminProfileRequest;
+use App\Http\Requests\Store\StoreAdminProfileRequest;
+use App\Http\Requests\Update\UpdateAdminProfileRequest;
 use App\Models\AdminProfile;
 
 class AdminProfileController extends Controller

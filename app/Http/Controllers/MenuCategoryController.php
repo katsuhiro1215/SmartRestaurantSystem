@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreMenuCategoryRequest;
-use App\Http\Requests\UpdateMenuCategoryRequest;
+use App\Http\Requests\Store\StoreMenuCategoryRequest;
+use App\Http\Requests\Update\UpdateMenuCategoryRequest;
 use App\Models\MenuCategory;
 
 class MenuCategoryController extends Controller

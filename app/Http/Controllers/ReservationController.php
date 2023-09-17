@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreReservationRequest;
-use App\Http\Requests\UpdateReservationRequest;
+use App\Http\Requests\Store\StoreReservationRequest;
+use App\Http\Requests\Update\UpdateReservationRequest;
 use App\Models\Reservation;
 
 class ReservationController extends Controller

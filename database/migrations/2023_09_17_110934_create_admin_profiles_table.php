@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('firstname', 40)->comment('名');
             $table->string('lastname_kana', 50)->comment('セイ');
             $table->string('firstname_kana', 50)->comment('メイ');
-            $table->string('user_photo_path')->nullable()->comment('ユーザー写真');
+            $table->string('admin_photo_path')->nullable()->comment('ユーザー写真');
             $table->date('birth')->nullable()->comment('生年月日');
             $table->string('gender', 10)->nullable()->comment('性別');
             $table->string('zipcode', 10)->nullable()->comment('郵便番号');

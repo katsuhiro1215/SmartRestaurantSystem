@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCouponRequest;
-use App\Http\Requests\UpdateCouponRequest;
+use App\Http\Requests\Store\StoreCouponRequest;
+use App\Http\Requests\Update\UpdateCouponRequest;
 use App\Models\Coupon;
 
 class CouponController extends Controller
