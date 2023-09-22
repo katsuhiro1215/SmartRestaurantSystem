@@ -28,17 +28,8 @@
             @include('layouts.user-navigation')
         @endif
 
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endif
-
         <!-- Page Content -->
-        <main class="min-h-screen">
+        <main class="min-h-screen sm:ml-64">
             @if (request()->is('owner*'))
                 @include('layouts.owner-sidebar')
             @elseif(request()->is('admin*'))
@@ -48,10 +39,50 @@
             @else
                 @include('layouts.user-sidebar')
             @endif
-            {{ $slot }}
+
+            <div class="bg-white shadow pt-16">
+                <header class="h-full px-4 py-3 overflow-y-auto bg-gray-100 dark:bg-gray-800">
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                        {{ $header }}
+                    </h2>
+                </header>
+
+                <nav class="flex justify-between items-center h-full px-4 py-3 overflow-y-auto bg-gray-100 dark:bg-gray-800"
+                    aria-label="Breadcrumb">
+                    {{ $breadcrumb }}
+                </nav>
+                <section class="text-gray-600 body-font">
+                    <div class="container px-4 py-3 mx-auto">
+                        @if (session('message'))
+                            <x-toast :status="session('status', 'success')" :message="session('message')" />
+                        @endif
+
+                        {{ $slot }}
+                    </div>
+                </section>
+            </div>
         </main>
         @include('layouts.footer')
     </div>
+    {{-- <script>
+        @if (Session::has('message'))
+            let type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
+            }
+        @endif
+    </script> --}}
 </body>
 
 </html>

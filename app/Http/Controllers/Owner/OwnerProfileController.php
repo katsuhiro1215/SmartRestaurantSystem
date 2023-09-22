@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\Update\UpdateOwnerProfileRequest;
+use App\Models\OwnerProfile;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,14 +13,20 @@ use Illuminate\View\View;
 
 class OwnerProfileController extends Controller
 {
-    public function edit(Request $request): View
+    public function __construct()
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $this->middleware('auth:owners');
     }
 
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function edit(): View
+    {
+        $ownerId = Auth::user()->id;
+        $ownerProfile = OwnerProfile::find($ownerId);
+
+        return view('owner.profile.edit', compact('ownerProfile'));
+    }
+
+    public function update(UpdateOwnerProfileRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
 
