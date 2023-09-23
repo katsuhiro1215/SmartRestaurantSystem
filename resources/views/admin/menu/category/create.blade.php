@@ -26,6 +26,7 @@
                 </div>
             </li>
         </ol>
+        <x-link-button name="expired" href="{{ route('admin.expiredMenuCategory.index') }}" />
     </x-slot>
     <x-grid>
         <div class="px-4 py-3 lg:col-span-3">

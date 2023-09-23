@@ -153,4 +153,35 @@ class ShopController extends Controller
 
         return redirect()->route('owner.shop.index')->with($notification);
     }
+
+    public function expiredIndex()
+    {
+        $expiredShop = Shop::onlyTrashed()->get();
+
+        return view('admin.shop.expired', compact('expiredShop'));
+    }
+
+    public function expiredRestore($shop)
+    {
+        Shop::withTrashed()->findOrFail($shop->id)->restore();
+
+        $notification = array(
+            'message' => 'メニューの復元に成功しました。',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.expiredShop.index')->with($notification);
+    }
+
+    public function expiredDestroy($shop)
+    {
+        Shop::onlyTrashed()->findOrFail($shop->id)->forceDelete();
+
+        $notification = array(
+            'message' => 'メニューを完全に削除しました。',
+            'alert-type' => 'danger'
+        );
+
+        return redirect()->route('admin.expiredShop.index')->with($notification);;
+    }
 }

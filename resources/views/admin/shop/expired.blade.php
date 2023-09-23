@@ -1,11 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Menu') }}
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Shop') }}
+        </h2>
     </x-slot>
     <x-slot name="breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
-                <a href="#"
+                <a href="{{ route('admin.dashboard') }}"
                     class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                     <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 20 20">
@@ -22,14 +24,11 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 9 4-4-4-4" />
                     </svg>
-                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Menu</span>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Shop</span>
                 </div>
             </li>
         </ol>
-        <div class="float-right">
-            <x-link-button name="expired" href="{{ route('admin.expiredMenu.index') }}" />
-            <x-link-button name="create" href="{{ route('admin.menu.create') }}" />
-        </div>
+        <x-link-button name="index" href="{{ route('admin.shop.index') }}" />
     </x-slot>
     <div class="w-full mx-auto px-4 py-3 overflow-auto">
         <x-user-table>
@@ -38,11 +37,9 @@
                     <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                         SL</th>
                     <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
-                        Category Name</th>
-                    <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                         Name</th>
                     <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
-                        Price</th>
+                        Type</th>
                     <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                         Status</th>
                     <th
@@ -51,23 +48,18 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($menus as $key => $menu)
+                @foreach ($expiredShop as $key => $shop)
                     <tr>
                         <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
                             {{ $key + 1 }}</td>
-                        <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                            {{ $menu->menuCategory->name }}
-                        </td>
                         <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3 flex items-center">
-                            <img src="{{ !empty($menu->menu_photo_path) ? url('storage/menus/' . $menu->menu_photo_path) : url('upload/no-image.png') }}"
+                            <img src="{{ !empty($shop->shop_photo_path) ? url('storage/shops/' . $shop->shop_photo_path) : url('upload/no-image.png') }}"
                                 alt="" class="w-12 h-12 rounded-full mr-2">
-                            <span>{{ $menu->name }}</span>
+                            <span>{{ $shop->name }}</span>
                         </td>
+                        <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">{{ $shop->type }}</td>
                         <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                            {{ $menu->price }}
-                        </td>
-                        <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
-                            @if ($menu->status === '販売中')
+                            @if ($shop->status === 1)
                                 <x-badge name="active" />
                             @else
                                 <x-badge name="inactive" />
@@ -75,10 +67,10 @@
                         </td>
                         <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3 text-center">
                             <x-link-button name="show"
-                                href="{{ route('admin.menu.show', ['menu' => $menu->id]) }}" />
+                                href="{{ route('admin.shop.show', ['shop' => $shop->id]) }}" />
                             <x-link-button name="edit"
-                                href="{{ route('admin.menu.edit', ['menu' => $menu->id]) }}" />
-                            <form method="POST" action="{{ route('admin.menu.destroy', ['menu' => $menu->id]) }}"
+                                href="{{ route('admin.shop.edit', ['shop' => $shop->id]) }}" />
+                            <form method="POST" action="{{ route('admin.shop.destroy', ['shop' => $shop->id]) }}"
                                 class="inline">
                                 @csrf
                                 @method('delete')

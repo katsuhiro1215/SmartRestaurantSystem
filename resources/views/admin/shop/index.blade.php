@@ -28,7 +28,10 @@
                 </div>
             </li>
         </ol>
-        <x-link-button name="create" href="{{ route('admin.shop.create') }}" />
+        <div class="float-right">
+            <x-link-button name="expired" href="{{ route('admin.expiredShop.index') }}" />
+            <x-link-button name="create" href="{{ route('admin.shop.create') }}" />
+        </div>
     </x-slot>
     <div class="w-full mx-auto px-4 py-3 overflow-auto">
         <x-user-table>

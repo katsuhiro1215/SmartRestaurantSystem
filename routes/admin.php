@@ -40,6 +40,11 @@ Route::middleware('auth:admins', 'verified')->group(function () {
     Route::resource('/user', UserController::class)->only('index', 'show');
     // Shop
     Route::resource('/shop', ShopController::class);
+    Route::controller(ShopController::class)->prefix('expiredShop')->group(function () {
+        Route::get('/',  'expiredIndex')->name('expiredShop.index');
+        Route::get('/{shop}', 'expiredRestore')->name('expiredShop.restore');
+        Route::delete('/{shop}', 'expiredDestroy')->name('expiredShop.destroy');
+    });
     // Menu Category
     Route::resource('/menuCategory', MenuCategoryController::class)->except('index');
     Route::controller(MenuCategoryController::class)->prefix('expiredMenuCategory')->group(function () {

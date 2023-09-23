@@ -42,7 +42,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($menuCategories as $key => $menuCategory)
+                    @foreach ($expiredMenuCategory as $key => $menuCategory)
                         <tr>
                             <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
                                 {{ $key + 1 }}</td>
@@ -66,26 +66,6 @@
                     @endforeach
                 </tbody>
             </x-user-table>
-        </div>
-        <div class="px-4 py-3 col-span-1">
-            <h3>新規作成</h3>
-            <form method="POST" action="{{ route('admin.menuCategory.store') }}">
-                @csrf
-                <div class="mt-4">
-                    <x-input-label for="name" :value="__('Name')" />
-                    <x-text-input id="name" name="name" type="name" class="mt-1 block w-full"
-                        :value="old('name')" required />
-                    <x-input-error class="mt-2" :messages="$errors->get('name')" />
-                </div>
-                <div class="mt-4">
-                    <x-input-label for="description" :value="__('description')" />
-                    <x-textarea name="description" />
-                    <x-input-error :messages="$errors->get('description')" class="mt-2" />
-                </div>
-                <div class="mt-4">
-                  <x-submit-button name="store" />
-                </div>
-            </form>
         </div>
     </x-grid>
 </x-app-layout>
