@@ -10,9 +10,10 @@ return new class extends Migration
     {
         Schema::create('menu_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->comment('カテゴリー名');
+            $table->string('name', 50)->comment('カテゴリー名');
             $table->string('description')->nullable()->comment('カテゴリー概要');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

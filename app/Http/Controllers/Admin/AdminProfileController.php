@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\Update\UpdateAdminProfileRequest;
+use App\Models\AdminProfile;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,14 +13,20 @@ use Illuminate\View\View;
 
 class AdminProfileController extends Controller
 {
-    public function edit(Request $request): View
+    public function __construct()
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $this->middleware('auth:admins');
     }
 
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function edit(): View
+    {
+        $adminId = Auth::user()->id;
+        $adminProfile = AdminProfile::find($adminId);
+
+        return view('admin.profile.edit', compact('adminProfile'));
+    }
+
+    public function update(UpdateAdminProfileRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
 

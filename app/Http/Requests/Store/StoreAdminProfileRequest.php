@@ -15,7 +15,7 @@ class StoreAdminProfileRequest extends FormRequest
             'lastname_kana' => ['required', 'string', 'regex:/^[ァ-ヶー]+$/u', 'max:50'],
             'firstname_kana' => ['required', 'string', 'regex:/^[ァ-ヶー]+$/u', 'max:50'],
             'admin_photo_path' => ['nullable' , 'image' , 'mimes: jpg,jpeg,png' , 'max:2048'],
-            'birth' => ['required', 'date', 'after:1900-01-01', 'before:today'],
+            'birth' => ['nullable', 'date', 'after:1900-01-01', 'before:today'],
             'gender' => ['nullable', 'string', 'max:10'],
             'zipcode' => ['required', 'string', 'max:10'],
             'address1' => ['required', 'string', 'max:20'],

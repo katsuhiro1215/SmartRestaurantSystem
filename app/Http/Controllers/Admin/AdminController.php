@@ -6,42 +6,31 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Store\StoreAdminRequest;
 use App\Http\Requests\Update\UpdateAdminRequest;
 use App\Models\Admin;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('auth:admins');
     }
 
-    public function create()
+    public function edit(): View
     {
-        //
+        $admin = Auth::user();
+
+        return view('admin.profile.edit', compact('admin'));
     }
 
-    public function store(StoreAdminRequest $request)
+    public function update(UpdateAdminRequest $request, Admin $admin): RedirectResponse
     {
-        //
-    }
+        $admin = Auth::user();
 
-    public function show(Admin $admin)
-    {
-        //
-    }
-
-    public function edit(Admin $admin)
-    {
-        //
-    }
-
-    public function update(UpdateAdminRequest $request, Admin $admin)
-    {
-        //
-    }
-
-    public function destroy(Admin $admin)
-    {
-        //
+        $admin->email = $request->email;
+        $admin->save();
+        
+        return redirect()->back();
     }
 }

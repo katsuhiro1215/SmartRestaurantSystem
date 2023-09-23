@@ -52,7 +52,8 @@
                 <h3>名前: {{ $adminProfile->full_name }}</h3>
             </div>
             <div class="mt-4 text-center">
-                <x-link-button name="profileEdit" href="{{ route('owner.adminProfile.edit', ['admin' => $admin->id, 'adminProfile' => $admin->adminProfile->id]) }}" />
+                <x-link-button name="profileEdit"
+                    href="{{ route('owner.adminProfile.edit', ['admin' => $admin->id, 'adminProfile' => $admin->adminProfile->id]) }}" />
                 <x-link-button name="edit" href="{{ route('owner.admin.edit', ['admin' => $admin->id]) }}" />
             </div>
         </div>
@@ -233,7 +234,7 @@
                 <div class="mt-4">
                     <h3>認証情報</h3>
                     <div class="mt-4 overflow-hidden">
-                        <table class="table-auto border-collapse min-w-full divide-y divide-red-200">
+                        <x-user-table>
                             <tbody class="divide-y divide-red-200">
                                 <tr>
                                     <th class="border border-slate-300 bg-gray-100 px-4 py-3 font-medium text-left">
@@ -251,7 +252,7 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </x-user-table>
                     </div>
                 </div>
             </div>
