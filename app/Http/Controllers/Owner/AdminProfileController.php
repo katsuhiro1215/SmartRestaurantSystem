@@ -13,6 +13,11 @@ use Illuminate\View\View;
 
 class AdminProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:owners');
+    }
+    
     public function create($admin): View
     {
         $admin = Admin::findOrFail($admin);

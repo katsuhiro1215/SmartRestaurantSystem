@@ -26,6 +26,11 @@ Route::middleware('auth:owners', 'verified')->group(function () {
     });
     // Admin
     Route::resource('/admin', AdminController::class);
+    Route::controller(AdminController::class)->prefix('expiredAdmin')->group(function () {
+        Route::get('/',  'expiredIndex')->name('admin.expired.index');
+        Route::get('/{admin}', 'expiredRestore')->name('admin.expired.restore');
+        Route::delete('/{admin}', 'expiredDestroy')->name('admin.expired.destroy');
+    });
     // Admin Profile
     Route::controller(AdminProfileController::class)->prefix('adminProfile')->group(function () {
         Route::get('/profile/{admin}/create', 'create')->name('adminProfile.create');

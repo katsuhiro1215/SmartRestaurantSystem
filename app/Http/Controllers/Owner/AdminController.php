@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:owners');
+    }
+
     public function index(): View
     {
         $admins = Admin::latest()->paginate(20);
@@ -80,5 +85,40 @@ class AdminController extends Controller
         );
 
         return redirect()->route('owner.admin.index')->with($notification);
+    }
+
+    public function expiredIndex(): View
+    {
+        $expiredAdmin = Admin::onlyTrashed()->get();
+
+        return view('owner.admin.expired', compact('expiredAdmin'));
+    }
+
+    public function expiredRestore($id): RedirectResponse
+    {
+        Admin::withTrashed()->findOrFail($id)->restore();
+
+        $notification = array(
+            'message' => '管理者の復元に成功しました。',
+            'status' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function expiredDestroy($id): RedirectResponse
+    {
+        $expiredAdmin = Admin::onlyTrashed()->findOrFail($id);
+
+        $expiredAdmin->adminProfile()->forceDelete();
+
+        $expiredAdmin->forceDelete();
+
+        $notification = array(
+            'message' => '管理者を完全に削除しました。',
+            'status' => 'danger'
+        );
+
+        return redirect()->back()->with($notification);
     }
 }

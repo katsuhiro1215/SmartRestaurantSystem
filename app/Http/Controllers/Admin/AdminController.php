@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Store\StoreAdminRequest;
 use App\Http\Requests\Update\UpdateAdminRequest;
 use App\Models\Admin;
 use Illuminate\Http\RedirectResponse;
@@ -30,7 +29,12 @@ class AdminController extends Controller
 
         $admin->email = $request->email;
         $admin->save();
+
+        $notification = array(
+            'message' => '管理者の更新に成功しました。',
+            'status' => 'success'
+        );
         
-        return redirect()->back();
+        return redirect()->back()->with($notification);
     }
 }
