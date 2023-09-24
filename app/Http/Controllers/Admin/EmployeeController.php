@@ -38,6 +38,8 @@ class EmployeeController extends Controller
 
         $employeeId = $employee->id;
 
+        $employee->shops()->attach($request->shop_id);
+
         $notification = array(
             'message' => '従業員の登録に成功しました。続いて、プロフィールを登録してください。',
             'status' => 'success'
@@ -50,6 +52,7 @@ class EmployeeController extends Controller
     {
         $employee = Employee::findOrFail($employee->id);
         $employeeProfile = $employee->employeeProfile;
+
         $age = date_diff(date_create($employeeProfile->birth), date_create('today'))->y;
 
         return view('admin.employee.show', compact('employee', 'employeeProfile', 'age'));
@@ -85,5 +88,42 @@ class EmployeeController extends Controller
         );
 
         return redirect()->route('admin.employee.index')->with($notification);
+    }
+
+    public function expiredIndex()
+    {
+        $expiredEmployee = Employee::onlyTrashed()->get();
+
+        return view('admin.employee.expired', compact('expiredEmployee'));
+    }
+
+    public function expiredRestore($id)
+    {
+        Employee::withTrashed()->findOrFail($id)->restore();
+
+        $notification = array(
+            'message' => '従業員の復元に成功しました。',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.expiredEmployee.index')->with($notification);
+    }
+
+    public function expiredDestroy($id)
+    {
+        $expiredEmployee = Employee::onlyTrashed()->findOrFail($id);
+
+        $expiredEmployee->employeeProfile()->forceDelete();
+
+        $expiredEmployee->stores()->detach();
+
+        $expiredEmployee->forceDelete();
+
+        $notification = array(
+            'message' => '従業員を完全に削除しました。',
+            'alert-type' => 'danger'
+        );
+
+        return redirect()->route('admin.expiredEmployee.index')->with($notification);
     }
 }

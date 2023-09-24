@@ -1,0 +1,28 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  &__top {
+    margin: 16px 0;
+    height: 40px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    p {
+      font-size: 1.4rem;
+      @media screen and (min-width: 880px) {
+        font-size: 1.5rem;
+      }
+      @media screen and (min-width: 1040px) {
+        font-size: 1.6rem;
+      }
+    }
+  }
+  &__center {
+    height: 80px;
+  }
+  &__bottom {
+    height: 40px;
+  }
+}

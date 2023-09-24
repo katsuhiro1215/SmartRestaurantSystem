@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\MenuCategoryController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\EmployeeShopController;
+
 
 Route::middleware('auth:admins', 'verified')->group(function () {
     // Dashboard
@@ -29,6 +31,11 @@ Route::middleware('auth:admins', 'verified')->group(function () {
     });
     // Employee
     Route::resource('/employee', EmployeeController::class);
+    Route::controller(EmployeeController::class)->prefix('expiredEmployee')->group(function () {
+        Route::get('/',  'expiredIndex')->name('expiredEmployee.index');
+        Route::get('/{employee}', 'expiredRestore')->name('expiredEmployee.restore');
+        Route::delete('/{employee}', 'expiredDestroy')->name('expiredEmployee.destroy');
+    });
     // Employee Profile
     Route::controller(EmployeeProfileController::class)->prefix('employeeProfile')->group(function () {
         Route::get('/profile/{employee}/create', 'create')->name('employeeProfile.create');
@@ -59,6 +66,8 @@ Route::middleware('auth:admins', 'verified')->group(function () {
         Route::get('/{menu}', 'expiredRestore')->name('expiredMenu.restore');
         Route::delete('/{menu}', 'expiredDestroy')->name('expiredMenu.destroy');
     });
+    // Assign
+    Route::resource('/employeeShop', EmployeeShopController::class)->except('show');
 });
 
 require __DIR__ . '/admin_auth.php';

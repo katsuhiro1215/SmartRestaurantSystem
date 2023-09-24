@@ -1,0 +1,24 @@
+.section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  @media screen and (min-width: 520px) {
+    margin-top: 48px;
+    margin-bottom: 48px;
+  }
+  @media screen and (min-width: 880px) {
+    margin-top: 56px;
+    margin-bottom: 56px;
+  }
+  @media screen and (min-width: 960px) {
+    margin-top: 64px;
+    margin-bottom: 64px;
+  }
+  @media screen and (min-width: 1040px) {
+    margin-top: 72px;
+    margin-bottom: 72px;
+  }
+  @media screen and (min-width: 1200px) {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+}

@@ -1,0 +1,37 @@
+.tab {
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    @media screen and (min-width: 520px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (min-width: 960px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media screen and (min-width: 1200px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  &__item {
+    background-color: antiquewhite;
+    padding: 24px 16px;
+    text-align: center;
+    font-size: 1.6rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    @media screen and (min-width: 880px) {
+      font-size: 1.7rem;
+    }
+    @media screen and (min-width: 1040px) {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+.menu {
+  display: none;
+  &.is-active {
+    display: block;
+  }
+}
