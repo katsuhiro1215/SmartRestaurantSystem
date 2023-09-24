@@ -7,7 +7,7 @@
             $color = 'blue';
             break;
         case 'success':
-            $color = 'green';
+            $color = 'pink';
             break;
         case 'error':
             $color = 'red';

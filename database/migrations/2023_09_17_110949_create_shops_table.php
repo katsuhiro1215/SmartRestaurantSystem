@@ -15,8 +15,8 @@ return new class extends Migration
             $table->string('type', 20)->nullable()->comment('本店, 支店');
             $table->text('description')->nullable()->comment('店舗概要');
             $table->string('email')->unique()->comment('メールアドレス');
-            $table->string('store_photo_path')->nullable()->comment('店舗写真');
-            $table->string('store_logo_path')->nullable()->comment('店舗ロゴ');
+            $table->string('shop_photo_path')->nullable()->comment('店舗写真');
+            $table->string('shop_logo_path')->nullable()->comment('店舗ロゴ');
             $table->string('zipcode', 10)->comment('郵便番号');
             $table->string('address1', 20)->comment('都道府県名');
             $table->string('address2', 30)->comment('市区町村名');

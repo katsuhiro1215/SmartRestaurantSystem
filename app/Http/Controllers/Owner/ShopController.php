@@ -19,7 +19,7 @@ class ShopController extends Controller
         $this->middleware('auth:owners');
     }
 
-    public function index()
+    public function index(): View
     {
         $shops = Shop::latest()->paginate(20);
 
@@ -33,7 +33,7 @@ class ShopController extends Controller
         return view('owner.shop.create', compact('admin'));
     }
 
-    public function store(StoreShopRequest $request)
+    public function store(StoreShopRequest $request): RedirectResponse
     {
         $shop = Shop::create([
             'name' => $request->name,
@@ -136,7 +136,7 @@ class ShopController extends Controller
         $shop->save();
 
         $notification = array(
-            'message' => 'プロフィールの更新に成功しました。',
+            'message' => '店舗の更新に成功しました。',
             'status' => 'success'
         );
 

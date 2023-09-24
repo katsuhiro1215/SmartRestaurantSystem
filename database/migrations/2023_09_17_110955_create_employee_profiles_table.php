@@ -24,6 +24,10 @@ return new class extends Migration
             $table->string('address3', 50)->nullable()->comment('町域名');
             $table->string('address4', 100)->nullable()->comment('それ以降の住所');
             $table->string('phone_number', 20)->nullable()->comment('連絡先');
+            $table->string('status', 20)->default('利用中')->comment('利用中, 停止中、退会');
+            $table->string('role', 20)->comment('正社員, パート, アルバイト');
+            $table->date('start_date')->comment('利用開始日');
+            $table->datetime('last_login_at')->nullable()->comment('最終ログイン日時');
             $table->timestamps();
             $table->softDeletes();
         });

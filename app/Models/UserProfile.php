@@ -9,7 +9,7 @@ use App\Models\BaseModel;
 
 class UserProfile extends BaseModel
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = [];
 

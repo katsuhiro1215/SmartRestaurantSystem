@@ -9,9 +9,6 @@ use App\Models\Admin;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Redirect;
-use Throwable;
 
 class AdminController extends Controller
 {
@@ -27,7 +24,7 @@ class AdminController extends Controller
         return view('owner.admin.create');
     }
 
-    public function store(StoreAdminRequest $request)
+    public function store(StoreAdminRequest $request): RedirectResponse
     {
         $admin = Admin::create([
             'email' => $request->email,

@@ -11,11 +11,11 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->datetime('reservation_datetime')->comment('予約日時');
-            $table->integer('reservation_people')->comment('予約人数');
-            $table->string('reservation_request')->comment('要望');
-            $table->integer('reservation_status')->comment('予約ステータス');
-            $table->integer('reservation_information')->comment('備考欄');
+            $table->datetime('datetime')->comment('予約日時');
+            $table->integer('people')->comment('予約人数');
+            $table->string('request')->comment('要望');
+            $table->integer('status')->comment('予約ステータス');
+            $table->integer('information')->comment('備考欄');
             $table->timestamps();
         });
     }
